@@ -1,0 +1,26 @@
+body {
+    font-family: 'Helvetica Neue', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.page {
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#admin-dashboard {
+    background-color: #f0f0f0;
+    padding: 20px;
+}
+
+#orders-list {
+    margin-top: 20px;
+}
+
+.order-item {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 10px;
+}
