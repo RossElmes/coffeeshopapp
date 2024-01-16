@@ -80,7 +80,8 @@ document.addEventListener('DOMContentLoaded', () => {
             total: coffeeOrder.calculateTotal(),
             orderTime,
             customerNumber,
-            customerEmail
+            customerEmail,
+            status:'Ordered'
         };
 
         // Send the order to the server

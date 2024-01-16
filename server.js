@@ -16,7 +16,8 @@ let orders = [
         total: 7.0,
         orderTime: '12:30 PM',
         customerNumber: '123-456-7890',
-        customerEmail: 'example@email.com'
+        customerEmail: 'example@email.com',
+        status:'Ordered'
     },
     // Add more orders as needed
     {
@@ -28,7 +29,8 @@ let orders = [
         total: 7.0,
         orderTime: '12:30 PM',
         customerNumber: '123-456-7890',
-        customerEmail: 'ross@email.com'
+        customerEmail: 'ross@email.com',
+        status:'Ordered'
     },
 ];
 

@@ -38,6 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
             orderItem.innerHTML += `<p>Order Time: ${order.orderTime}</p>`;
             orderItem.innerHTML += `<p>Customer Number: ${order.customerNumber}</p>`;
             orderItem.innerHTML += `<p>Customer Email: ${order.customerEmail}</p>`;
+            orderItem.innerHTML += `<p>Status: ${order.status}</p>`;
             ordersList.appendChild(orderItem);
         });
     }
