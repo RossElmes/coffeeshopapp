@@ -9,6 +9,16 @@
 <body>
     <div id="shop-front" class="page">
         <div id="product-list">
+            <div id="customer-info">
+                <label for="customer-number">Phone Number:</label>
+                <input type="tel" id="customer-number" name="customer-number" required>
+                <br>
+                <label for="customer-email">Email:</label>
+                <input type="email" id="customer-email" name="customer-email" required>
+                <br>
+                <label for="order-time">Select Order Time:</label>
+                <select id="order-time" class="order-time-dropdown"></select>
+            </div>
             <div class="product-item" data-productid="latte" data-productname="Latte" data-productprice="3.5">
                 <h3>Latte</h3>
                 <p>Price: $3.5</p>
@@ -33,15 +43,6 @@
         </div>
         <div id="order-summary">
             <p>Total: $0.00</p>
-            <label for="order-time">Select Order Time:</label>
-            <select id="order-time" class="order-time-dropdown"></select>
-        </div>
-        <div id="customer-info">
-            <label for="customer-number">Phone Number:</label>
-            <input type="tel" id="customer-number" name="customer-number" required>
-            <br>
-            <label for="customer-email">Email:</label>
-            <input type="email" id="customer-email" name="customer-email" required>
         </div>
         <button id="place-order-btn">Place Order</button>
     </div>

@@ -1,8 +1,12 @@
+console.log('Script loaded');
 document.addEventListener('DOMContentLoaded', () => {
+    console.log('DOMContentLoaded event');
+    
     const ordersList = document.getElementById('orders-list');
 
-    // Simulate fetching orders from a server
-    fetchOrders();
+    fetchOrders()
+    // Simulate fetching orders from a server ever 10s
+    setInterval(()=>{fetchOrders();},10000)
 
     // You can periodically fetch orders or use websockets for real-time updates
 
@@ -16,6 +20,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 displayOrders(orders);
             })
             .catch(error => console.error('Error fetching orders:', error));
+
+        console.log('ran')
     }
 
     function displayOrders(orders) {

@@ -63,14 +63,19 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     const placeOrderBtn = document.getElementById('place-order-btn');
-    placeOrderBtn.addEventListener('click', () => {
+    placeOrderBtn.addEventListener('click', async () => {
         // Additional logic for handling customer info and placing order
         const orderTime = document.getElementById('order-time').value;
         const customerNumber = document.getElementById('customer-number').value;
         const customerEmail = document.getElementById('customer-email').value;
 
+        console.log(orderTime)
+        console.log(customerNumber)
+        console.log(customerEmail)
+
         // Prepare order details
         const orderDetails = {
+            id:3,
             products: coffeeOrder.products,
             total: coffeeOrder.calculateTotal(),
             orderTime,
@@ -116,9 +121,10 @@ function updateAvailableTimes(availableTimes) {
     orderTimeDropdown.innerHTML = '';
 
     availableTimes.forEach(time => {
+        console.log(time.time)
         const option = document.createElement('option');
-        option.value = time;
-        option.textContent = time;
+        option.value = time.time;
+        option.textContent = time.time;
         orderTimeDropdown.appendChild(option);
     });
 }
