@@ -7,9 +7,16 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
+<div class="container" id="banner">
+    <img src="lambertscoffeehouse.png">
+    <div class="text-overlay">
+        <p>Lambert Coffee House</p>
+        <p>Mon-Sat 8-3</p>
+        <p>Online Ordering</p>
+    </div>
+</div>
 <!-- Order Form -->
-<div>
+<div class="formContainer">
   <form id="customerForm">
     <label for="email">Email:</label>
     <input type="email" id="email" required><br>
@@ -20,13 +27,13 @@
     <label for="phone">Phone:</label>
     <input type="tel" id="phone" required><br>
 
-    <label for="orderTime">Order Time:</label>
-    <input type="text" id="orderTime" placeholder="HH:MM AM/PM" required><br>
+    <label for="meeting-time">Order time:</label>
+    <input type="time" id="orderTime" name="order-time" min="08:10" max="14:00" step="600">
     <br>
     <br>
   </form>
 </div>
-<div id="'product-selector">
+<div id="'product-selector" class="formContainer">
     <label for="product">Product:</label>
     <select id="product">
         <option value="Latte">Latte</option>
@@ -54,14 +61,14 @@
 </div>
 
 <!-- Order Items -->
-<div>
+<div class="formContainer">
   <h2>Your Order</h2>
   <ul id="orderItems"></ul>
   <button type="button" onclick="confirmOrder()">Confirm Order</button>
 </div>
 
 <!-- Confirmation Message -->
-<div id="confirmModal">
+<div id="confirmModal" class="formContainer">
   <h2>Order Confirmation</h2>
   <ul id="orderItems"></ul>
   <p id="confirmationDetails"></p>
@@ -121,11 +128,10 @@
 
       deleteButton.addEventListener("click", () => {
           listItem.remove();
-          console.log(index);
           order.splice(index,1);
-          console.log(order);
-          listItem.remove();
-          
+          console.log(index);
+          const confirmationDetails = document.getElementById('confirmationDetails');
+          confirmationDetails.innerHTML = '';
         });
 
       listItem.append(deleteButton)
@@ -135,14 +141,25 @@
 
 
   var products = [
-      {
+      { id:1,
         name: 'Latte',
-        attributes: {
-          Size: ['Small', 'Medium', 'Large'],
-          Milk: ['Regular', 'Skim', 'Soy']
-        }
+        size:'8oz',
+        commentary:'Latte made with Regular Milk',
+        Price:3.70
       },
       // ... more products with different attributes
+      { id:2,
+        name: 'Flat White',
+        size:'8oz',
+        commentary:'Flat White made with Regular Milk',
+        Price:3.40
+      },
+      { id:3,
+        name: 'American',
+        size:'8oz',
+        commentary:'Americano with the option of taking it place or adding milk of your choice',
+        Price:3.40
+      },
     ];
 
     function confirmOrder() {
