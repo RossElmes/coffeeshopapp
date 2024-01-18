@@ -33,33 +33,7 @@
     <br>
   </form>
 </div>
-<div id="'product-selector" class="formContainer">
-    <label for="product">Product:</label>
-    <select id="product">
-        <option value="Latte">Latte</option>
-        <option value="Flat White">Flat White</option>
-        <option value="Americano">Americano</option>
-        <option value="Cappacino">Cappacino</option>
-        <option value="Cortado">Cortado</option>
-      </select>
-  
-      <label for="milk">Milk:</label>
-      <select id="milk">
-        <option value="OAT">OAT</option>
-        <option value="DAIRY">DAIRY</option>
-        <option value="COCONUT">COCONUT</option>
-      </select>
-  
-      <label for="size">Size:</label>
-      <select id="size">
-        <option value="Small">Small</option>
-        <option value="Medium">Medium</option>
-        <option value="Large">Large</option>
-      </select>
-  
-      <button type="button" onclick="addToOrder()">Add to Order</button>
-</div>
-
+<div id ='product-list'></div>
 <!-- Order Items -->
 <div class="formContainer">
   <h2>Your Order</h2>
@@ -74,46 +48,16 @@
   <p id="confirmationDetails"></p>
   <p>Your order number is <span id="orderNumber"></span>.</p>
 </div>
-
 <script>
+
   let order = [];
 
-  function addToOrder() {
-
-    const email = document.getElementById('email').value;
-    const name = document.getElementById('name').value;
-    const phone = document.getElementById('phone').value;
-    const orderTime = document.getElementById('orderTime').value;
-
-    // Get selected Milk option
-    const milk = document.getElementById('milk').value;
-
-    // Get selected Size
-    const size = document.getElementById('size').value;
-
-    // Get selected Product
-    const product = document.getElementById('product').value;
-    // Validate and store customer details
-    // You can perform additional validation as needed
-    // For simplicity, assuming all fields are required
-
-    // Create the order item
-    const orderItem = { product: `Product: ${product}`
-    , attributes: `Milk: ${milk}, Size: ${size}` 
-    , email:email
-    , name:name
-    , phone:phone
-    , orderTime:orderTime};
-
-    // Add the order item to the order
-    order.push(orderItem);
-
-    // Display the order items
-    updateOrderItems();
-
-    // Reset the form for adding another item
-    //document.getElementById('customerForm').reset();
-    console.log(order)
+  function removeObjectById(id) {
+    const indexToRemove = order.findIndex(obj => obj.id === id);
+    if (indexToRemove !== -1) {
+      order.splice(indexToRemove, 1);
+      updateOrderItems(); // Update the displayed list after removal
+    }
   }
 
   function updateOrderItems() {
@@ -124,43 +68,18 @@
       const listItem = document.createElement('li');
       const deleteButton = document.createElement("button");
       deleteButton.textContent = "Delete";
-      listItem.textContent = `${item.product} - ${item.attributes}`;
+      listItem.textContent = `${item.product} - ${item.price}`;
 
       deleteButton.addEventListener("click", () => {
-          listItem.remove();
-          order.splice(index,1);
-          console.log(index);
-          const confirmationDetails = document.getElementById('confirmationDetails');
-          confirmationDetails.innerHTML = '';
+
+        removeObjectById(item.id)
+
         });
 
       listItem.append(deleteButton)
       orderItemsElement.appendChild(listItem);
     });
   }
-
-
-  var products = [
-      { id:1,
-        name: 'Latte',
-        size:'8oz',
-        commentary:'Latte made with Regular Milk',
-        Price:3.70
-      },
-      // ... more products with different attributes
-      { id:2,
-        name: 'Flat White',
-        size:'8oz',
-        commentary:'Flat White made with Regular Milk',
-        Price:3.40
-      },
-      { id:3,
-        name: 'American',
-        size:'8oz',
-        commentary:'Americano with the option of taking it place or adding milk of your choice',
-        Price:3.40
-      },
-    ];
 
     function confirmOrder() {
         const confirmationDetails = document.getElementById('confirmationDetails');
@@ -170,7 +89,7 @@
         //confirmationDetails.textContent = 'Your order details:';
         order.forEach((item,index) => {
             const listItem = document.createElement('li');
-            listItem.textContent = `${item.product} - ${item.attributes}`;
+            listItem.textContent = `${item.product} - ${item.price}`;
             confirmationDetails.appendChild(listItem);
         });
 
@@ -181,7 +100,141 @@
     
     document.getElementById('orderNumber').textContent = orderNumber;
 
+    console.log(order)
+
   }
+
+  const products = [
+      { id:1,
+        name: 'Latte',
+        size:'8oz',
+        commentary:'Regular Latte made with Milk',
+        price:3.50
+      },
+
+      { id:2,
+        name: 'Large Latte',
+        size:'12oz',
+        commentary:'Large Latte made with Milk',
+        price:3.70
+      },
+      { id:1,
+        name: 'Oat Latte',
+        size:'8oz',
+        commentary:'Regular Latte made with Oat Milk',
+        price:3.50
+      },
+
+      { id:2,
+        name: 'Large Oat Latte',
+        size:'12oz',
+        commentary:'Large Latte made with Oat Milk',
+        price:3.70
+      },
+      { id:1,
+        name: 'Coconut Latte',
+        size:'8oz',
+        commentary:'Regular Latte made with Coconut Milk',
+        price:3.50
+      },
+      { id:2,
+        name: 'Large Coconut Latte',
+        size:'12oz',
+        commentary:'Large Latte made with Coconut Milk',
+        price:3.70
+      },
+      // ... more products with different attributes
+      { id:3,
+        name: 'Flat White',
+        size:'8oz',
+        commentary:'Flat White made with Regular Milk',
+        price:3.40
+      },
+
+      { id:4,
+        name: 'Oat Flat White',
+        size:'8oz',
+        commentary:'Flat White made with Oat Milk',
+        price:3.80
+      },
+
+      { id:5,
+        name: 'Coconut Flat White',
+        size:'8oz',
+        commentary:'Flat White made with Coconut Milk',
+        price:3.80
+      },
+
+
+
+
+
+
+
+
+      { id:3,
+        name: 'American',
+        size:'8oz',
+        commentary:'Americano with the option of taking it place or adding milk of your choice',
+        price:3.40
+      },
+    ];
+
+  const productList = document.getElementById('product-list');
+
+  function displayProducts(products) {
+    // Clear existing orders in the UI
+    productList.innerHTML = '';
+
+     // Display each order in the UI
+    products.forEach((product,index) => {
+        const prodItem = document.createElement('div');
+        prodItem.id = product.id
+        const AddButton = document.createElement("button");
+        AddButton.textContent = "Add to Order";
+        prodItem.className = 'formContainer';
+        prodItem.innerHTML = `<p>${product.name}</p>`;
+        prodItem.innerHTML += `<p>${product.commentary}</p>`;
+        prodItem.innerHTML += `<p>Price: €${product.price.toFixed(2)}</p>`;
+
+        AddButton.addEventListener("click", () => {
+
+        const email = document.getElementById('email').value;
+        const name = document.getElementById('name').value;
+        const phone = document.getElementById('phone').value;
+        const orderTime = document.getElementById('orderTime').value;
+
+        // Get selected Product
+        const productId = product.id
+        const productName = product.name
+        const price = '€'+product.price.toFixed(2)
+
+
+        // Create the order item
+        const orderItem = { productId: productId
+        , product: productName
+        , email:email
+        , name:name
+        , phone:phone
+        , orderTime:orderTime
+        , price:price};
+
+        // Add the order item to the order
+        order.push(orderItem);
+        console.log(product)
+
+        // Display the order items
+        updateOrderItems();
+
+        });
+
+        prodItem.append(AddButton)
+        productList.appendChild(prodItem);
+
+    }); 
+}
+
+displayProducts(products)
 
 </script>
 
