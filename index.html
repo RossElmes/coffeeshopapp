@@ -41,22 +41,12 @@
   <ul id="orderItems"></ul>
   <button type="button" onclick="confirmOrder()">Confirm Order</button>
 </div>
-
-<!-- Confirmation Message -->
-<div id="confirmModal" class="formContainer">
-  <h2>Order Confirmation</h2>
-  <ul id="orderItems"></ul>
-  <p id="confirmationDetails"></p>
-  <p>Your order number is <span id="orderNumber"></span>.</p>
-</div>
-
-<button onclick="openModal()">Open Modal</button>
-
 <div id="myModal" class="modal">
   <div class="modal-content">
     <span class="close-button" onclick="closeModal()">&times;</span>
     <h2>Order Confirmation</h2>
     <span class="tick">&check;</span>
+    <div id="confirmationDetails"></div>
     <button class='close-button-modal' onclick="closeModal()">Close</button>
   </div>
 </div>
@@ -94,8 +84,14 @@
   }
 
     function confirmOrder() {
+        
+        console.log(modal)
+        //Open the modal
+        openModal() 
+
         const confirmationDetails = document.getElementById('confirmationDetails');
         confirmationDetails.innerHTML = '';
+        console.log(confirmationDetails)
         const orderNumber = Math.floor(Math.random() * 1000000) + 1;
 
         //confirmationDetails.textContent = 'Your order details:';
@@ -104,14 +100,11 @@
             listItem.textContent = `${item.product} - ${item.price}`;
             confirmationDetails.appendChild(listItem);
         });
+        // reset the form when order is made
+        document.getElementById('customerForm').reset();
+        document.getElementById('orderNumber').textContent = orderNumber;
 
-    //Open the modal
-    openModal() 
-    // reset the form when order is made
-    document.getElementById('customerForm').reset();
-    document.getElementById('orderNumber').textContent = orderNumber;
-
-    console.log(order)
+        console.log(order)
 
   }
 
@@ -253,8 +246,7 @@
 
 displayProducts(products)
 
-
-  var modal = document.getElementById('myModal');
+var modal = document.getElementById('myModal');
 
   function openModal() {
     modal.style.display = 'flex';
@@ -262,17 +254,9 @@ displayProducts(products)
 
   function closeModal() {
     modal.style.display = 'none';
-
-    order = []
-
   }
 
-  // Close the modal if the user clicks outside the modal content
-  window.onclick = function(event) {
-    if (event.target === modal) {
-      closeModal();
-    }
-  };
+
 
 </script>
 
