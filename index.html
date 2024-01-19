@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Coffee Shop Order App</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -16,24 +17,24 @@
     </div>
 </div>
 <!-- Order Form -->
-<div class="formContainer">
+<div class="container">
   <form id="customerForm">
     <label for="email">Email:</label>
-    <input type="email" id="email" required><br>
+    <input type="email" id="email" class="form-control" required><br>
 
     <label for="name">Name:</label>
-    <input type="text" id="name" required><br>
+    <input type="text" id="name" class="form-control" required><br>
 
     <label for="phone">Phone:</label>
-    <input type="tel" id="phone" required><br>
+    <input type="tel" id="phone" class="form-control" required><br>
 
     <label for="meeting-time">Order time:</label>
-    <input type="time" id="orderTime" name="order-time" min="08:10" max="14:00" step="600">
+    <input type="time" id="orderTime" name="order-time" min="08:10" max="14:00" step="600" class="form-control">
     <br>
     <br>
   </form>
 </div>
-<div id ='product-list'></div>
+<div id ='product-list' class='panel panel-default'></div>
 <!-- Order Items -->
 <div class="formContainer">
   <h2>Your Order</h2>
@@ -47,6 +48,17 @@
   <ul id="orderItems"></ul>
   <p id="confirmationDetails"></p>
   <p>Your order number is <span id="orderNumber"></span>.</p>
+</div>
+
+<button onclick="openModal()">Open Modal</button>
+
+<div id="myModal" class="modal">
+  <div class="modal-content">
+    <span class="close-button" onclick="closeModal()">&times;</span>
+    <h2>Order Confirmation</h2>
+    <span class="tick">&check;</span>
+    <button class='close-button-modal' onclick="closeModal()">Close</button>
+  </div>
 </div>
 <script>
 
@@ -93,11 +105,10 @@
             confirmationDetails.appendChild(listItem);
         });
 
-
-
+    //Open the modal
+    openModal() 
     // reset the form when order is made
     document.getElementById('customerForm').reset();
-    
     document.getElementById('orderNumber').textContent = orderNumber;
 
     console.log(order)
@@ -165,20 +176,23 @@
         price:3.80
       },
 
-
-
-
-
-
-
-
       { id:3,
-        name: 'American',
+        name: 'Americano',
         size:'8oz',
         commentary:'Americano with the option of taking it place or adding milk of your choice',
         price:3.40
       },
     ];
+
+    function changeColor(element) {
+      // Toggle the "clicked" class to change color on click
+      element.classList.toggle('clicked');
+
+      // Set a timeout to remove the "clicked" class after the transition
+      setTimeout(() => {
+        element.classList.remove('clicked');
+      }, 300); // 300ms should match the transition duration
+    }
 
   const productList = document.getElementById('product-list');
 
@@ -190,14 +204,15 @@
     products.forEach((product,index) => {
         const prodItem = document.createElement('div');
         prodItem.id = product.id
-        const AddButton = document.createElement("button");
-        AddButton.textContent = "Add to Order";
-        prodItem.className = 'formContainer';
+        //const AddButton = document.createElement("button");
+        //AddButton.textContent = "Add to Order";
+        //AddButton.className = 'btn btn-primary'
+        prodItem.className = 'panel-body';
         prodItem.innerHTML = `<p>${product.name}</p>`;
         prodItem.innerHTML += `<p>${product.commentary}</p>`;
         prodItem.innerHTML += `<p>Price: €${product.price.toFixed(2)}</p>`;
 
-        AddButton.addEventListener("click", () => {
+        prodItem.addEventListener("click", () => {
 
         const email = document.getElementById('email').value;
         const name = document.getElementById('name').value;
@@ -226,15 +241,38 @@
         // Display the order items
         updateOrderItems();
 
+        changeColor(prodItem)
+
         });
 
-        prodItem.append(AddButton)
+        //prodItem.append(AddButton)
         productList.appendChild(prodItem);
 
     }); 
 }
 
 displayProducts(products)
+
+
+  var modal = document.getElementById('myModal');
+
+  function openModal() {
+    modal.style.display = 'flex';
+  }
+
+  function closeModal() {
+    modal.style.display = 'none';
+
+    order = []
+
+  }
+
+  // Close the modal if the user clicks outside the modal content
+  window.onclick = function(event) {
+    if (event.target === modal) {
+      closeModal();
+    }
+  };
 
 </script>
 

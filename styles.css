@@ -1,4 +1,4 @@
-@media only screen and (max-width: 600px) {
+/* @media only screen and (max-width: 600px) {
 
     body {
         font-family: 'Helvetica Neue', sans-serif;
@@ -20,7 +20,7 @@
 
 
 
-}
+} */
 
 img {
     width: 100%;
@@ -28,9 +28,7 @@ img {
     object-fit: cover; /* This ensures the image covers the entire container while maintaining its aspect ratio */
   }
 
-  .container {
-    position: relative;
-  }
+
 
   .text-overlay {
     position: absolute;
@@ -44,48 +42,7 @@ img {
     /* You can add more styles as needed */
   }
 
-.page {
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
 
-#shop-front {
-    background-color: #fff;
-}
-
-#product-list {
-    padding: 20px;
-}
-
-.product-item {
-    margin-bottom: 20px;
-}
-
-.quantity-btn {
-    background-color: #0070c9;
-    color: #fff;
-    padding: 5px 10px;
-    border: none;
-    cursor: pointer;
-}
-
-.quantity-btn:hover {
-    background-color: #005192;
-}
-
-#order-summary {
-    padding: 20px;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background-color: #f8f8f8;
-    border-top: 1px solid #ddd;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
 
 #customer-info {
     padding: 20px;
@@ -101,4 +58,87 @@ button {
 
 button:hover {
     background-color: #005192;
+}
+
+
+.panel-body{
+    border: 2px solid grey;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 20px;
+    color: black;
+    transition: background-color 1s;
+    
+}
+
+.panel-body:hover{
+    /*border: 2px solid grey;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 20px;*/
+    background-color: lightgreen;
+    
+}
+
+
+.click-effect {
+    /* Define your default styles */
+    color: black;
+    transition: color 0.3s;
+  }
+
+
+  .panel-body.clicked {
+    /* Define the styles after the click */
+    color: red;
+  }
+
+
+  body {
+    font-family: Arial, sans-serif;
+  }
+
+  .modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+
+  }
+
+  .modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 20px;
+    width: 30%;
+    height: 50%;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+  }
+
+.tick{
+  color: green;
+  width: 100%;
+  height: 100%;
+  font-size: 100pt;
+  text-align: center;
+  
+}
+
+.close-button-modal{
+    border-radius: 5px;
+    width: 50%;
+
 }
