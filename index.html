@@ -8,13 +8,9 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<div class="container" id="banner">
-    <img src="lambertscoffeehouse.png">
-    <div class="text-overlay">
-        <p>Lambert Coffee House</p>
-        <p>Mon-Sat 8-3</p>
-        <p>Online Ordering</p>
-    </div>
+<div class="banner">
+    <img src="lambertscoffeehouse2.png">
+    <p id="title">Lambert Coffee House Online Ordering</p>
 </div>
 <!-- Order Form -->
 <div class="container">
@@ -28,8 +24,7 @@
     <label for="phone">Phone:</label>
     <input type="tel" id="phone" class="form-control" required><br>
 
-    <label for="meeting-time">Order time:</label>
-    <input type="time" id="orderTime" name="order-time" min="08:10" max="14:00" step="600" class="form-control">
+    <div id="ordertimes-container"></div>
     <br>
     <br>
   </form>
@@ -39,7 +34,7 @@
 <div class="formContainer">
   <h2>Your Order</h2>
   <ul id="orderItems"></ul>
-  <button type="button" onclick="confirmOrder()">Confirm Order</button>
+  <button type="button" class="fixed-button" onclick="confirmOrder()">Confirm Order</button>
 </div>
 <div id="myModal" class="modal">
   <div class="modal-content">
@@ -47,12 +42,14 @@
     <h2>Order Confirmation</h2>
     <span class="tick">&check;</span>
     <div id="confirmationDetails"></div>
+    <div id =orderNumber></div>
     <button class='close-button-modal' onclick="closeModal()">Close</button>
   </div>
 </div>
 <script>
 
   let order = [];
+  let orderTime = 'test'
 
   function removeObjectById(id) {
     const indexToRemove = order.findIndex(obj => obj.id === id);
@@ -62,6 +59,8 @@
     }
   }
 
+  times = ['8:00','8:10','8:20','8:30','8:40','8:50','9:00']
+
   function updateOrderItems() {
     const orderItemsElement = document.getElementById('orderItems');
     orderItemsElement.innerHTML = '';
@@ -70,7 +69,7 @@
       const listItem = document.createElement('li');
       const deleteButton = document.createElement("button");
       deleteButton.textContent = "Delete";
-      listItem.textContent = `${item.product} - ${item.price}`;
+      listItem.textContent = `${item.product} - €${item.price}`;
 
       deleteButton.addEventListener("click", () => {
 
@@ -82,6 +81,8 @@
       orderItemsElement.appendChild(listItem);
     });
   }
+
+    totalPrice = 0.00
 
     function confirmOrder() {
         
@@ -97,14 +98,18 @@
         //confirmationDetails.textContent = 'Your order details:';
         order.forEach((item,index) => {
             const listItem = document.createElement('li');
-            listItem.textContent = `${item.product} - ${item.price}`;
+            listItem.textContent = `${item.product} - €${item.price}`;
             confirmationDetails.appendChild(listItem);
+            totalPrice += parseFloat(item.price)
+
+            
         });
         // reset the form when order is made
         document.getElementById('customerForm').reset();
         document.getElementById('orderNumber').textContent = orderNumber;
 
         console.log(order)
+        console.log(totalPrice.toFixed(2))
 
   }
 
@@ -210,12 +215,13 @@
         const email = document.getElementById('email').value;
         const name = document.getElementById('name').value;
         const phone = document.getElementById('phone').value;
-        const orderTime = document.getElementById('orderTime').value;
+        
+        console.log(orderTime)
 
         // Get selected Product
         const productId = product.id
         const productName = product.name
-        const price = '€'+product.price.toFixed(2)
+        const price = product.price.toFixed(2)
 
 
         // Create the order item
@@ -229,7 +235,6 @@
 
         // Add the order item to the order
         order.push(orderItem);
-        console.log(product)
 
         // Display the order items
         updateOrderItems();
@@ -240,10 +245,38 @@
 
         //prodItem.append(AddButton)
         productList.appendChild(prodItem);
+    }); 
+}
+
+
+const timeList = document.getElementById('ordertimes-container');
+
+function displayTimes(times) {
+    // Clear existing orders in the UI
+    timeList.innerHTML = '';
+
+     // Display each order in the UI
+    times.forEach((time,index) => {
+        const timeItem = document.createElement('div');
+        timeItem.id = time
+        timeItem.className = 'time-body';
+        timeItem.innerHTML = `${time}`;
+
+        timeItem.addEventListener("click",() => {
+
+        orderTime = document.getElementById(`${time}`).innerHTML;
+        console.log(orderTime)
+
+        });
+
+        //prodItem.append(AddButton)
+        timeList.appendChild(timeItem);
 
     }); 
 }
 
+
+displayTimes(times)
 displayProducts(products)
 
 var modal = document.getElementById('myModal');
@@ -255,8 +288,6 @@ var modal = document.getElementById('myModal');
   function closeModal() {
     modal.style.display = 'none';
   }
-
-
 
 </script>
 

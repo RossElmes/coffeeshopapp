@@ -1,144 +1,147 @@
-/* @media only screen and (max-width: 600px) {
 
-    body {
-        font-family: 'Helvetica Neue', sans-serif;
-        margin: 20;
-        padding: 20;
-        background-color:lightgray;
-    }
+body{
+color: #274867;
+margin-right: 40%;
+}
 
+.banner{
+justify-content: center;
+text-align: center;
 
-    .formContainer{
-        background-color: #fff;
-        color: black;
-        margin-top: 10px;
-        padding: 5px;
-        border: 1px solid #000; 
-        justify-content: center;
-        border-radius: 3px;
-    }
+}
 
-
-
-} */
 
 img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* This ensures the image covers the entire container while maintaining its aspect ratio */
-  }
+width: auto;
+height: 300px;
+}
 
 
-
-  .text-overlay {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: white; /* Set the text color */
-    font-size: 24px; /* Set the font size */
-    text-align: center;
-    font-family: Arial, sans-serif; /* Set the font family */
-    /* You can add more styles as needed */
-  }
-
+#title{
+font-size: 24pt ;
+text-align: center;
+color: #274867;
+}
 
 
 #customer-info {
-    padding: 20px;
+padding: 20px;
 }
 
 button {
-    background-color: #0070c9;
-    color: #fff;
-    padding: 10px;
-    border: none;
-    cursor: pointer;
+background-color: #274867;
+color: #fff;
+padding: 10px;
+border: none;
+cursor: pointer;
 }
 
 button:hover {
-    background-color: #005192;
+background-color: #005192;
 }
 
 
 .panel-body{
-    border: 2px solid grey;
-    margin: 10px;
-    padding: 10px;
-    border-radius: 20px;
-    color: black;
-    transition: background-color 1s;
-    
+border: 2px solid #274867;
+margin: 10px;
+padding: 10px;
+border-radius: 20px;
+/*transition: background-color 3s;
+transition: color 3s;*/
+
+
 }
 
-.panel-body:hover{
-    /*border: 2px solid grey;
-    margin: 10px;
-    padding: 10px;
-    border-radius: 20px;*/
-    background-color: lightgreen;
-    
+.panel-body.clicked {
+  background-color: #274867;
+  color: #fff;
 }
 
 
-.click-effect {
-    /* Define your default styles */
-    color: black;
-    transition: color 0.3s;
-  }
+body {
+font-family: Arial, sans-serif;
+}
 
+.modal {
+display: none;
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background-color: rgba(0, 0, 0, 0.5);
+justify-content: center;
+align-items: center;
 
-  .panel-body.clicked {
-    /* Define the styles after the click */
-    color: red;
-  }
+}
 
+.modal-content {
+background-color: #fff;
+padding: 20px;
+border-radius: 20px;
+width: 30%;
+height: 50%;
+align-items: center;
+justify-content: center;
+}
 
-  body {
-    font-family: Arial, sans-serif;
-  }
-
-  .modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    justify-content: center;
-    align-items: center;
-
-  }
-
-  .modal-content {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 20px;
-    width: 30%;
-    height: 50%;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .close-button {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    cursor: pointer;
-  }
+.close-button {
+position: absolute;
+top: 10px;
+right: 10px;
+cursor: pointer;
+}
 
 .tick{
-  color: green;
-  width: 100%;
-  height: 100%;
-  font-size: 100pt;
-  text-align: center;
-  
+color: #274867;
+width: 100%;
+height: 100%;
+font-size: 100pt;
+text-align: center;
+
 }
 
 .close-button-modal{
-    border-radius: 5px;
-    width: 50%;
+border-radius: 5px;
+width: 50%;
 
+}
+
+#ordertimes-container{
+display: flex;
+justify-content: space-between; 
+flex-wrap: wrap;
+text-align: center;
+}
+
+.time-body{
+flex: 1; /* Distribute remaining space equally among child elements */
+background-color: #fff;; /* Example background color */
+padding: 20px; /* Example padding */
+margin: 10px;
+border-radius: 20px;
+text-align: center;
+max-width: fit-content;
+border: 2px solid #274867;
+}
+
+.fixed-button {
+  position: fixed;
+  bottom: 20px; /* Adjust this value to set the distance from the bottom */
+  right: 20px; /* Adjust this value to set the distance from the right */
+  padding: 10px;
+  background-color: #274867; /* Example background color */
+  color: #fff; /* Example text color */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 600px) {
+
+
+  /* Media query for responsiveness */ 
+  #ordertimes-container{
+      justify-content: center; /* Center child elements when screen is narrow */
+  }
 }
