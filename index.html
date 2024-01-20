@@ -70,7 +70,7 @@
       const deleteButton = document.createElement("button");
       deleteButton.className = 'remove-button'
       deleteButton.textContent = "Remove";
-      listItem.textContent = `${item.product} - €${item.price}`;
+      listItem.textContent = `${item.product}`;
 
       deleteButton.addEventListener("click", () => {
 
@@ -99,12 +99,14 @@
         //confirmationDetails.textContent = 'Your order details:';
         order.forEach((item,index) => {
             const listItem = document.createElement('li');
-            listItem.textContent = `${item.product} - €${item.price}`;
+            listItem.textContent = `${item.product}`;
             confirmationDetails.appendChild(listItem);
             totalPrice += parseFloat(item.price)
-
-            
         });
+
+        const listItem = document.createElement('li');
+        listItem.textContent = `Total: €${totalPrice.toFixed(2)}`;
+        confirmationDetails.appendChild(listItem);
         // reset the form when order is made
         document.getElementById('customerForm').reset();
         document.getElementById('orderNumber').textContent = orderNumber;
