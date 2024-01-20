@@ -31,7 +31,7 @@
 </div>
 <div id ='product-list' class='panel panel-default'></div>
 <!-- Order Items -->
-<div class="formContainer">
+<div class="fixed-order">
   <h2>Your Order</h2>
   <ul id="orderItems"></ul>
   <button type="button" class="fixed-button" onclick="confirmOrder()">Confirm Order</button>
@@ -68,7 +68,8 @@
     order.forEach((item, index) => {
       const listItem = document.createElement('li');
       const deleteButton = document.createElement("button");
-      deleteButton.textContent = "Delete";
+      deleteButton.className = 'remove-button'
+      deleteButton.textContent = "Remove";
       listItem.textContent = `${item.product} - €${item.price}`;
 
       deleteButton.addEventListener("click", () => {
@@ -206,7 +207,7 @@
         //AddButton.textContent = "Add to Order";
         //AddButton.className = 'btn btn-primary'
         prodItem.className = 'panel-body';
-        prodItem.innerHTML = `<p>${product.name}</p>`;
+        prodItem.innerHTML = `<p class='prod-name'>${product.name}</p>`;
         prodItem.innerHTML += `<p>${product.commentary}</p>`;
         prodItem.innerHTML += `<p>Price: €${product.price.toFixed(2)}</p>`;
 
@@ -266,11 +267,14 @@ function displayTimes(times) {
 
         orderTime = document.getElementById(`${time}`).innerHTML;
         console.log(orderTime)
+        changeColor(timeItem)
 
         });
 
         //prodItem.append(AddButton)
         timeList.appendChild(timeItem);
+
+        
 
     }); 
 }
