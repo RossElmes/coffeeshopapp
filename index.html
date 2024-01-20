@@ -43,7 +43,7 @@
     <span class="tick">&check;</span>
     <div id="confirmationDetails"></div>
     <div id =orderNumber></div>
-    <button id="close-button-modal" onclick="closeModal()">Close</button>
+    <button id="close-button-modal" onclick="closeModal()">Proceed with Order</button>
   </div>
 </div>
 <script>
@@ -98,9 +98,9 @@
 
         //confirmationDetails.textContent = 'Your order details:';
         order.forEach((item,index) => {
-            const listItem = document.createElement('li');
-            listItem.textContent = `${item.product}`;
-            confirmationDetails.appendChild(listItem);
+            //const listItem = document.createElement('li');
+            //listItem.textContent = `${item.product}`;
+            //confirmationDetails.appendChild(listItem);
             totalPrice += parseFloat(item.price)
         });
 
@@ -109,7 +109,7 @@
         confirmationDetails.appendChild(listItem);
         // reset the form when order is made
         document.getElementById('customerForm').reset();
-        document.getElementById('orderNumber').textContent = orderNumber;
+        document.getElementById('orderNumber').textContent = 'Order ID: '+orderNumber;
 
         console.log(order)
         console.log(totalPrice.toFixed(2))
